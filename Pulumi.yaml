@@ -2,5 +2,5 @@ name: aws_infrastructure
 runtime:
   name: python
   options:
-    virtualenv: venv
+    virtualenv: /home/nabil/.local/share/virtualenvs/aws_infrastructure-mfpX0rbx
 description: A minimal AWS Python Pulumi program

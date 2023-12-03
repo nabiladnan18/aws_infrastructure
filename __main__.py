@@ -15,6 +15,10 @@ aws_public_key = ec2.KeyPair(
     public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjOcXLi6/PjesaPn5js08+OYfHzQuQ6BzjrLd2hVo6jc93WrYlaEMzfMp969JQ29L8+KbBjwQvwm/jZ/31Usg12ceEySGOZXY9ycQKWc53xWDYrm6Gkr/ScVhfXNLDjssN7xG1kqa1TaVNnAenAY9npBJyh3WCgXQ6xQR9809NpjbOtr5pPdAQE7CU4JFOwnL+0Es5gudb3I8bHULt+pOUfP4d5Cav9/Egfd5XfoSfCRQJC8sJPLLrHLLRxJp/xHIVQdNpjWu/ttYOE3TpaHTQfJjPJPBci3TfX9JQiS0UnpoB3BeKXo/xrHKQ0t4OJOBt20NNFAIbDYMnszSLaj+bXcHHejyRg6w6KVKKnY5Iua6xEFQXXjWMDM5Vt+p0FzDRPelzB/9AzUm2U9LkPXz+y7O5vIn41GHJFMiijqDLDcmhrME89cFAmdFQmObsCwMSiRYmPyOQXNQ4YAGi+UxDT/aclKfJB+T39P4vULcd7nWlaPqGAOHWmreLsjQq127Me1NOWxv31sE3SYDDtszQP8fjAfs5UYxOFfXpZX5VHqwEXZafyIhJfHj0J9BWuuZIQJySsB6xsGizZDE0fvKhAmlcqWtYSe3ipxMPXQeXlFgMeqFS1jMtyq/ckawxuGNFx9XgyN46dLixIMJi8bKdthD39pGWnsUpdP4VB6H57Q== nabil@zenbook",
 )
 
+file_to_upload = s3.BucketObject(
+    "my-home-page", bucket=bucket.bucket, source=pulumi.FileAsset("./site/index.html")
+)
+
 
 # SECURITY GROUPS
 sg = ec2.SecurityGroup(
