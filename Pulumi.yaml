@@ -3,4 +3,9 @@ runtime:
   name: python
   options:
     virtualenv: /home/nabil/.local/share/virtualenvs/aws_infrastructure-mfpX0rbx
+build:
+  stage:
+    - run
+run:
+  cmd: ["bin/sh", "-c", "pulumi up"]
 description: A minimal AWS Python Pulumi program
