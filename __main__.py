@@ -25,7 +25,8 @@ sg = ec2.SecurityGroup(
     "webserver-security-group", description="security group for webservers"
 )
 
-allow_ssh = ec2.SecurityGroupRule(
+## INGRESS
+ingress_allow_ssh = ec2.SecurityGroupRule(
     "AllowSSH",
     type="ingress",
     from_port=22,
@@ -35,7 +36,7 @@ allow_ssh = ec2.SecurityGroupRule(
     security_group_id=sg.id,
 )
 
-allow_http = ec2.SecurityGroupRule(
+ingress_allow_http = ec2.SecurityGroupRule(
     "AllowHTTP",
     type="ingress",
     from_port=80,
@@ -45,9 +46,30 @@ allow_http = ec2.SecurityGroupRule(
     security_group_id=sg.id,
 )
 
-allow_all = ec2.SecurityGroupRule(
+ingress_allow_all = ec2.SecurityGroupRule(
     "AllowAll",
     type="ingress",
+    from_port=0,
+    to_port=0,
+    protocol="-1",
+    cidr_blocks=["0.0.0.0/0"],
+    security_group_id=sg.id,
+)
+
+# EGRESS
+egress_allow_http = ec2.SecurityGroupRule(
+    "AllowHTTPEgress",
+    type="egress",
+    from_port=80,
+    to_port=80,
+    protocol="tcp",
+    cidr_blocks=["0.0.0.0/0"],
+    security_group_id=sg.id,
+)
+
+egress_allow_all = ec2.SecurityGroupRule(
+    "AllowAllEgress",
+    type="egress",
     from_port=0,
     to_port=0,
     protocol="-1",
