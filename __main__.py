@@ -54,6 +54,16 @@ allow_all = ec2.SecurityGroupRule(
     security_group_id=sg.id,
 )
 
+allow_reaching_outside = ec2.SecurityGroupRule(
+    "AllowAllOutgoing",
+    type="egress",
+    from_port=0,
+    to_port=0,
+    protocol="-1",
+    cidr_blocks=["0.0.0.0/0"],
+    security_group_id=sg.id,
+)
+
 # EC2 INSTANCES
 ec2_instance = ec2.Instance(
     "super-awesome-ec2-instance",
