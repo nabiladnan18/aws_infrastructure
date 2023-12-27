@@ -1,23 +1,22 @@
 """An AWS Python Pulumi program"""
-
 import pulumi
 from pulumi_aws import s3, ec2
 
-# Create an AWS resource (S3 Bucket)
-bucket = s3.Bucket("my-bucket")
+# # Create an AWS resource (S3 Bucket)
+# bucket = s3.Bucket("my-bucket")
 
-# Export the name of the bucket
-pulumi.export("bucket_name", bucket.id)
+# # Export the name of the bucket
+# pulumi.export("bucket_name", bucket.id)
 
 # PUBLIC KEY
 aws_public_key = ec2.KeyPair(
     "aws_public_key",
-    public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjOcXLi6/PjesaPn5js08+OYfHzQuQ6BzjrLd2hVo6jc93WrYlaEMzfMp969JQ29L8+KbBjwQvwm/jZ/31Usg12ceEySGOZXY9ycQKWc53xWDYrm6Gkr/ScVhfXNLDjssN7xG1kqa1TaVNnAenAY9npBJyh3WCgXQ6xQR9809NpjbOtr5pPdAQE7CU4JFOwnL+0Es5gudb3I8bHULt+pOUfP4d5Cav9/Egfd5XfoSfCRQJC8sJPLLrHLLRxJp/xHIVQdNpjWu/ttYOE3TpaHTQfJjPJPBci3TfX9JQiS0UnpoB3BeKXo/xrHKQ0t4OJOBt20NNFAIbDYMnszSLaj+bXcHHejyRg6w6KVKKnY5Iua6xEFQXXjWMDM5Vt+p0FzDRPelzB/9AzUm2U9LkPXz+y7O5vIn41GHJFMiijqDLDcmhrME89cFAmdFQmObsCwMSiRYmPyOQXNQ4YAGi+UxDT/aclKfJB+T39P4vULcd7nWlaPqGAOHWmreLsjQq127Me1NOWxv31sE3SYDDtszQP8fjAfs5UYxOFfXpZX5VHqwEXZafyIhJfHj0J9BWuuZIQJySsB6xsGizZDE0fvKhAmlcqWtYSe3ipxMPXQeXlFgMeqFS1jMtyq/ckawxuGNFx9XgyN46dLixIMJi8bKdthD39pGWnsUpdP4VB6H57Q== nabil@zenbook",
+    public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC1ebFXHmz3ry8khsnQeGVINKg/VMaXdsbQF0mcUq8VQSFSbAYJhu1tues9ECVLjEWAJbdHQDtYwk2iKId369UN+XY0Rmljk5ynB7oFgXmKzs6a1kE1q3av6Zcg+A3UbSUoDyld4YxP0BHM+4tHnNWGHooqGYNOzcnW83AqKR0uV0ul1G8dklFtOXpPQ/Qb7IjVI9APKREuMlVIXmUAGUBA5cR+TzUk7MCFBUMvac23cRfiiUOSPJzmQi57XSVlbGaw83b4jZXIkt2Tx/JJuMsgh7JCfXBTuhilVEJcgNTV7SkP2d2k8IROHnr8NloKd89qWCRQJmqqo/SqbX3071vIIB/p/l1UCEkCtLF9wYQr3lh9p1Qen8+M8/bEGFA/oGXpJyG79kZ7yCCqTXfvNq2zXwtXgOHzRHCpfpb+l0a696Vc8WwMwX3ctWLrEeb3/p2xOap6UE5UPfL9XCGDxjw3darIrYovLwdPiQ34s2rzJshqKKXktDk/aW21PLVqi4aefu4hU9LxiDw2wk7izFzYFp/TtbAzNMKFmf0ttWUxFrxIRA3wU1rmD204AHa4SBV5S7ZQzwKzbnoBPvkzl/LdsaOAmUxWLWkoFStw3UGcGQbU33biab6oIPYsHxCPLYK5AceTzP5DSeFAMBRJIRowNhl/rDA5rCNG3vUNR+5qMQ== nabil@zenbook",
 )
 
-file_to_upload = s3.BucketObject(
-    "my-home-page", bucket=bucket.bucket, source=pulumi.FileAsset("./site/index.html")
-)
+# file_to_upload = s3.BucketObject(
+#     "my-home-page", bucket=bucket.bucket, source=pulumi.FileAsset("./site/index.html")
+# )
 
 
 # SECURITY GROUPS

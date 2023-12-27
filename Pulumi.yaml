@@ -1,4 +1,6 @@
 name: aws_infrastructure
+config:
+  aws:region: eu-central-1
 runtime:
   name: python
   options:
