@@ -1,7 +1,6 @@
 """An AWS Python Pulumi program"""
-from sqlite3 import dbapi2
 import pulumi
-from pulumi_aws import s3, ec2, rds
+from pulumi_aws import ec2, rds
 
 # # Create an AWS resource (S3 Bucket)
 # bucket = s3.Bucket("my-bucket")
