@@ -11,7 +11,7 @@ from pulumi_aws import ec2, rds
 # PUBLIC KEY
 aws_public_key = ec2.KeyPair(
     "aws_public_key",
-    public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC1ebFXHmz3ry8khsnQeGVINKg/VMaXdsbQF0mcUq8VQSFSbAYJhu1tues9ECVLjEWAJbdHQDtYwk2iKId369UN+XY0Rmljk5ynB7oFgXmKzs6a1kE1q3av6Zcg+A3UbSUoDyld4YxP0BHM+4tHnNWGHooqGYNOzcnW83AqKR0uV0ul1G8dklFtOXpPQ/Qb7IjVI9APKREuMlVIXmUAGUBA5cR+TzUk7MCFBUMvac23cRfiiUOSPJzmQi57XSVlbGaw83b4jZXIkt2Tx/JJuMec2_security_grouph7JCfXBTuhilVEJcgNTV7SkP2d2k8IROHnr8NloKd89qWCRQJmqqo/SqbX3071vIIB/p/l1UCEkCtLF9wYQr3lh9p1Qen8+M8/bEGFA/oGXpJyG79kZ7yCCqTXfvNq2zXwtXgOHzRHCpfpb+l0a696Vc8WwMwX3ctWLrEeb3/p2xOap6UE5UPfL9XCGDxjw3darIrYovLwdPiQ34s2rzJshqKKXktDk/aW21PLVqi4aefu4hU9LxiDw2wk7izFzYFp/TtbAzNMKFmf0ttWUxFrxIRA3wU1rmD204AHa4SBV5S7ZQzwKzbnoBPvkzl/LdsaOAmUxWLWkoFStw3UGcGQbU33biab6oIPYsHxCPLYK5AceTzP5DSeFAMBRJIRowNhl/rDA5rCNG3vUNR+5qMQ== nabil@zenbook",
+    public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC1ebFXHmz3ry8khsnQeGVINKg/VMaXdsbQF0mcUq8VQSFSbAYJhu1tues9ECVLjEWAJbdHQDtYwk2iKId369UN+XY0Rmljk5ynB7oFgXmKzs6a1kE1q3av6Zcg+A3UbSUoDyld4YxP0BHM+4tHnNWGHooqGYNOzcnW83AqKR0uV0ul1G8dklFtOXpPQ/Qb7IjVI9APKREuMlVIXmUAGUBA5cR+TzUk7MCFBUMvac23cRfiiUOSPJzmQi57XSVlbGaw83b4jZXIkt2Tx/JJuMsgh7JCfXBTuhilVEJcgNTV7SkP2d2k8IROHnr8NloKd89qWCRQJmqqo/SqbX3071vIIB/p/l1UCEkCtLF9wYQr3lh9p1Qen8+M8/bEGFA/oGXpJyG79kZ7yCCqTXfvNq2zXwtXgOHzRHCpfpb+l0a696Vc8WwMwX3ctWLrEeb3/p2xOap6UE5UPfL9XCGDxjw3darIrYovLwdPiQ34s2rzJshqKKXktDk/aW21PLVqi4aefu4hU9LxiDw2wk7izFzYFp/TtbAzNMKFmf0ttWUxFrxIRA3wU1rmD204AHa4SBV5S7ZQzwKzbnoBPvkzl/LdsaOAmUxWLWkoFStw3UGcGQbU33biab6oIPYsHxCPLYK5AceTzP5DSeFAMBRJIRowNhl/rDA5rCNG3vUNR+5qMQ== nabil@zenbook",
 )
 
 # file_to_upload = s3.BucketObject(
@@ -106,7 +106,7 @@ allow_traffic_outbound = ec2.SecurityGroupRule(
     protocol="-1",
     from_port=0,
     to_port=0,
-    cidr_blocks=[ec2_instance.public_ip],
+    cidr_blocks=["0.0.0.0/0"],
     security_group_id=rds_security_group.id,
 )
 
