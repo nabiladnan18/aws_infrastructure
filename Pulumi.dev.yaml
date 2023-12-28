@@ -1,2 +1,4 @@
 config:
   aws:region: eu-central-1
+  aws_infrastructure:database_password:
+    secure: AAABAOhRhSHi9oIWbh5aZzL6NADJ4CiTvRzvkHkpBKl3z7LED20PPSp5amGK/dOYsC0Vcz0qJHWk4hPBuTk=
