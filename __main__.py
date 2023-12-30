@@ -98,6 +98,7 @@ postgresql = rds.Instance(
     username="postgres",
     password=config.require_secret("database_password"),
     skip_final_snapshot=True,
+    publicly_accessible=True,
 )
 
 # RDS: SECURITY GROUPS RULES
