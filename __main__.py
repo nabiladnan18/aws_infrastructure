@@ -91,7 +91,8 @@ rds_ingress_rule = ec2.SecurityGroupRule(
     from_port=5432,
     to_port=5432,
     protocol="tcp",
-    security_group_id=ec2_security_group.id,
+    security_group_id=rds_security_group.id,
+    source_security_group_id=ec2_security_group.id,
 )
 
 # RDS: POSTGRESQL
