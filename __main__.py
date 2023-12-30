@@ -90,7 +90,7 @@ postgresql = rds.Instance(
     "postgres-db",
     allocated_storage=20,
     engine="aurora-postgresql",
-    engine_version="12",
+    engine_version="12.0",
     instance_class="db.t3.micro",
     vpc_security_group_ids=[ec2_security_group.id],
     db_name="postgres",
@@ -124,4 +124,5 @@ allow_rds_traffic = ec2.SecurityGroupRule(
 pulumi.export("public_ip", ec2_instance.public_ip)
 pulumi.export("instance_url", ec2_instance.public_dns)
 pulumi.export("db_address", postgresql.address)
+pulumi.export("db_endpoint", postgresql.endpoint)
 pulumi.export("db_name", postgresql.db_name)
