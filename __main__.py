@@ -89,8 +89,8 @@ ec2_instance = ec2.Instance(
 postgresql = rds.Instance(
     "postgres-db",
     allocated_storage=20,
-    engine="aurora-postgresql",
-    engine_version="12",
+    engine="postgresql",
+    engine_version="16",
     instance_class="db.t3.micro",
     vpc_security_group_ids=[ec2_security_group.id],
     db_name="postgres",
