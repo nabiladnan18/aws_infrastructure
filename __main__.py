@@ -72,6 +72,14 @@ allow_reaching_outside = ec2.SecurityGroupRule(
     security_group_id=ec2_security_group.id,
 )
 
+ec2_rds_connectivity = ec2.SecurityGroupRule(
+    "EC2toRDS",
+    type="ingress",
+    protocol="tcp",
+    from_port=5432,
+    to_port=5432,
+    security_group_id=ec2_security_group.id,
+)
 
 # EC2 INSTANCES
 ec2_instance = ec2.Instance(
