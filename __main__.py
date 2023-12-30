@@ -88,6 +88,7 @@ ec2_instance = ec2.Instance(
 # RDS: POSTGRESQL
 postgresql = rds.Instance(
     "postgres-db",
+    apply_immediately=True,
     allocated_storage=20,
     engine="postgres",
     engine_version="15",
