@@ -31,7 +31,6 @@ rds_security_group = ec2.SecurityGroup(
     "rds-security-group", description="security group for rds instance"
 )
 
-
 # EC2: SECURITY GROUP RULES
 allow_ssh = ec2.SecurityGroupRule(
     "AllowSSH",
@@ -98,30 +97,7 @@ postgresql = rds.Instance(
     username="postgres",
     password=config.require_secret("database_password"),
     skip_final_snapshot=True,
-    publicly_accessible=True,
-)
-
-# RDS: SECURITY GROUPS RULES
-allow_traffic_outbound = ec2.SecurityGroupRule(
-    "AllowPostgresqlTrafficOut",
-    type="egress",
-    description="Allows outgoing traffic from the RDS instance",
-    protocol="-1",
-    from_port=0,
-    to_port=0,
-    cidr_blocks=["0.0.0.0/0"],
-    security_group_id=rds_security_group.id,
-)
-
-allow_rds_traffic = ec2.SecurityGroupRule(
-    "AllowPostgresqlTraffic",
-    type="ingress",
-    description="Allows EC2 instance to access into postgresqldb",
-    protocol="tcp",
-    from_port=5432,
-    to_port=5432,
-    security_group_id=rds_security_group.id,
-    source_security_group_id=ec2_security_group.id,
+    publicly_accessible=False,
 )
 
 pulumi.export("public_ip", ec2_instance.public_ip)
