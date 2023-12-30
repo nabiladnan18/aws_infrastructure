@@ -75,6 +75,7 @@ ec2_instance = ec2.Instance(
     associate_public_ip_address=True,
     key_name=aws_public_key.key_name,
     tags={"Name": "webserver"},
+    security_groups=[ec2_security_group],
 )
 
 
