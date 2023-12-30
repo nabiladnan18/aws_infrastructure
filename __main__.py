@@ -79,10 +79,10 @@ ec2_instance = ec2.Instance(
 
 
 # RDS SECURITY GROUP
-rds_security_group = ec2.SecurityGroup(
-    "rds-security-group",
-    description="security group for rds instance",
-)
+# rds_security_group = ec2.SecurityGroup(
+#     "rds-security-group",
+#     description="security group for rds instance",
+# )
 
 # TODO: HOW THE TF DO YOU CONNECT ECS TO RDS? 🤬
 # # RDS SECURITY GROUP RULES
@@ -97,23 +97,23 @@ rds_security_group = ec2.SecurityGroup(
 # )
 
 # RDS: POSTGRESQL
-postgresql = rds.Instance(
-    "postgres-db",
-    apply_immediately=True,
-    allocated_storage=20,
-    engine="postgres",
-    engine_version="15",
-    instance_class="db.t3.micro",
-    vpc_security_group_ids=[ec2_security_group.id],
-    db_name="postgres",
-    username="postgres",
-    password=config.require_secret("database_password"),
-    skip_final_snapshot=True,
-    publicly_accessible=False,
-)
+# postgresql = rds.Instance(
+#     "postgres-db",
+#     apply_immediately=True,
+#     allocated_storage=20,
+#     engine="postgres",
+#     engine_version="15",
+#     instance_class="db.t3.micro",
+#     vpc_security_group_ids=[ec2_security_group.id],
+#     db_name="postgres",
+#     username="postgres",
+#     password=config.require_secret("database_password"),
+#     skip_final_snapshot=True,
+#     publicly_accessible=False,
+# )
 
 pulumi.export("public_ip", ec2_instance.public_ip)
 pulumi.export("instance_url", ec2_instance.public_dns)
-pulumi.export("db_address", postgresql.address)
-pulumi.export("db_endpoint", postgresql.endpoint)
-pulumi.export("db_name", postgresql.db_name)
+# pulumi.export("db_address", postgresql.address)
+# pulumi.export("db_endpoint", postgresql.endpoint)
+# pulumi.export("db_name", postgresql.db_name)
