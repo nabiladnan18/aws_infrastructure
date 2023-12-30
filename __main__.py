@@ -97,6 +97,7 @@ postgresql = rds.Instance(
     db_name="postgres",
     username="postgres",
     password=config.require_secret("database_password"),
+    skip_final_snapshot=True,
 )
 
 # RDS: SECURITY GROUPS RULES
@@ -118,7 +119,6 @@ allow_rds_traffic = ec2.SecurityGroupRule(
     protocol="tcp",
     from_port=5432,
     to_port=5432,
-    skip_final_snapshot=True,
     security_group_id=rds_security_group.id,
     source_security_group_id=ec2_security_group.id,
 )
