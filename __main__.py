@@ -21,14 +21,9 @@ aws_public_key = ec2.KeyPair(
 # CONFIGURATIONS AND SECRETS
 config = pulumi.Config()
 
-
-# SECURITY GROUPS
+# EC2 SECURITY GROUPS
 ec2_security_group = ec2.SecurityGroup(
     "webserver-security-group", description="security group for webservers"
-)
-
-rds_security_group = ec2.SecurityGroup(
-    "rds-security-group", description="security group for rds instance"
 )
 
 # EC2: SECURITY GROUP RULES
@@ -72,16 +67,6 @@ allow_reaching_outside = ec2.SecurityGroupRule(
     security_group_id=ec2_security_group.id,
 )
 
-# TODO: CONNECT TO THE DATABASE
-ec2_rds_connectivity = ec2.SecurityGroupRule(
-    "EC2toRDS",
-    type="ingress",
-    protocol="tcp",
-    from_port=5432,
-    to_port=5432,
-    security_group_id=ec2_security_group.id,
-)
-
 # EC2 INSTANCES
 ec2_instance = ec2.Instance(
     "super-awesome-ec2-instance",
@@ -90,7 +75,23 @@ ec2_instance = ec2.Instance(
     associate_public_ip_address=True,
     key_name=aws_public_key.key_name,
     tags={"Name": "webserver"},
-    vpc_security_group_ids=[ec2_security_group.id],
+)
+
+
+# RDS SECURITY GROUP
+rds_security_group = ec2.SecurityGroup(
+    "rds-security-group",
+    description="security group for rds instance",
+)
+
+# RDS SECURITY GROUP RULES
+rds_ingress_rule = ec2.SecurityGroupRule(
+    "RdsTraffic",
+    type="ingress",
+    from_port=5432,
+    to_port=5432,
+    protocol="tcp",
+    security_group_id=ec2_security_group.id,
 )
 
 # RDS: POSTGRESQL
